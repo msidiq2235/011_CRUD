@@ -69,7 +69,7 @@ app.put("/api/users/:id", (req, res) => {
     const { nama, nim, kelas } = req.body;
 
     db.query(
-        "UPDATE users SET nama = ?, nim = ?, kelas = ? WHERE id = ?",
+        "UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ? WHERE id = ?",
         [nama, nim, kelas, userId],
         (err, results) => {
             if (err) {
@@ -86,7 +86,7 @@ app.delete("/api/users/:id", (req, res) => {
     const userId = req.params.id;
 
     db.query(
-        "DELETE FROM users WHERE id = ?",
+        "DELETE FROM mahasiswa WHERE id = ?",
         [userId],
         (err, results) => {
             if (err) {
