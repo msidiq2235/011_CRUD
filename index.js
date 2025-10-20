@@ -63,3 +63,21 @@ app.post("/api/users", (req, res) => {
         }
     );
 });
+
+app.put("/api/users/:id", (req, res) => {
+    const userId = req.params.id;
+    const { nama, nim, kelas } = req.body;
+
+    db.query(
+        "UPDATE users SET nama = ?, nim = ?, kelas = ? WHERE id = ?",
+        [nama, nim, kelas, userId],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: "Database error" });
+            }
+
+            res.json({ message: "User updated successfully" });
+        }
+    );
+});
